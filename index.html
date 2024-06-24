@@ -32,12 +32,12 @@
 
     screen.addEventListener('dblclick', () => {
       if (!document.fullscreenElement) {
-        screen.classList.add('fullscreen');
-        screen.requestFullscreen();
+        screen.requestFullscreen().catch((err) => {
+          console.error('Error while entering fullscreen:', err);
+        });
       } else {
         if (document.exitFullscreen) {
           document.exitFullscreen();
-          screen.classList.remove('fullscreen');
         }
       }
     });
